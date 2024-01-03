@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smorin <smorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 10:54:52 by smorin            #+#    #+#             */
-/*   Updated: 2023/12/19 11:44:59 by smorin           ###   ########.fr       */
+/*   Created: 2023/12/16 16:00:55 by smorin            #+#    #+#             */
+/*   Updated: 2023/12/19 11:46:20 by smorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strndup(char *str, int n)
 {
@@ -32,13 +32,13 @@ char	*ft_strndup(char *str, int n)
 
 char	*ft_read(int fd, char *save)
 {
-	int		readbyte;
 	char	*tmp;
+	int		readbytes;
 
 	tmp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!tmp)
 		return (NULL);
-	readbyte = 1;
+	readbytes = 1;
 	if (!save)
 	{
 		save = malloc(sizeof(char) * 1);
@@ -46,12 +46,12 @@ char	*ft_read(int fd, char *save)
 			return (NULL);
 		save[0] = '\0';
 	}
-	while (!ft_strchr(save, '\n') && readbyte != 0)
+	while (!ft_strchr(save, '\n') && readbytes != 0)
 	{
-		readbyte = read(fd, tmp, BUFFER_SIZE);
-		if (readbyte == -1)
-			return (free(save), free(tmp), NULL);
-		tmp[readbyte] = '\0';
+		readbytes = read(fd, tmp, BUFFER_SIZE);
+		if (readbytes == -1)
+			return (free(tmp), free(save), NULL);
+		tmp[readbytes] = '\0';
 		save = ft_strjoin(save, tmp);
 	}
 	return (free(tmp), save);

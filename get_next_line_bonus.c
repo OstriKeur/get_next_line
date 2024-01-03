@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smorin <smorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 14:38:08 by smorin            #+#    #+#             */
-/*   Updated: 2023/12/16 15:33:40 by smorin           ###   ########.fr       */
+/*   Created: 2023/12/16 15:55:43 by smorin            #+#    #+#             */
+/*   Updated: 2023/12/19 11:46:11 by smorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static char	*save;
+	static char	*save[4095];
 	char		*line;
 
 	line = NULL;
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
-	save = ft_read(fd, save);
-	if (!save || save[0] == 0)
+	save[fd] = ft_read(fd, save[fd]);
+	if (!save[fd] || save[fd][0] == 0)
 	{
-		free(save);
-		save = NULL;
+		free(save[fd]);
+		save[fd] = NULL;
 		return (NULL);
 	}
-	line = ft_get_line(save);
+	line = ft_get_line(save[fd]);
 	if (!line || line[0] == 0)
-		return (free(line), free(save), NULL);
-	save = ft_clean_save(save);
-	if (save && save[0] == 0)
+		return (free(line), free(save[fd]), NULL);
+	save[fd] = ft_clean_save(save[fd]);
+	if (save[fd] && save[fd][0] == 0)
 	{
-		free(save);
-		save = NULL;
+		free(save[fd]);
+		save[fd] = NULL;
 	}
 	return (line);
 }
