@@ -59,21 +59,10 @@ La version bonus permet de gérer plusieurs file descriptors simultanément. Cha
 - Gestion des cas limites (fichier vide, ligne très longue, EOF)
 - Allocation dynamique de mémoire
 - Gestion de plusieurs file descriptors simultanément (bonus)
-- Compréhension de la différence entre lecture par chunks et lecture complète
-
-## Structure
-
-- `get_next_line.c` : Fonction principale
-- `get_next_line_utils.c` : Fonctions utilitaires
-- `get_next_line.h` : Header avec prototypes
-- `get_next_line_bonus.c` : Version bonus (plusieurs file descriptors)
-- `get_next_line_utils_bonus.c` : Utilitaires pour la version bonus
 
 ---
 
 **Projet réalisé dans le cadre du cursus 42 Paris**
-
----
 
 **Note obtenue : 125/100**
 
