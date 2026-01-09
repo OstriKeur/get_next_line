@@ -73,4 +73,8 @@ La version bonus permet de gérer plusieurs file descriptors simultanément. Cha
 
 **Projet réalisé dans le cadre du cursus 42 Paris**
 
-*Note obtenue : 125/100*
+---
+
+**Note obtenue : 125/100**
+
+![Note 125/100](notes/get_next_line_note.png)
